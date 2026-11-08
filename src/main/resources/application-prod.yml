@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgresql-ffatest.alwaysdata.net:5432/ffatest_ffa_tournaments
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+app:
+  frontend-url: ${FRONTEND_URL}
+
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+
+  support:
+    bootstrap:
+      email: ${SUPPORT_BOOTSTRAP_EMAIL:}
+      password: ${SUPPORT_BOOTSTRAP_PASSWORD:}
+      display-name: ${SUPPORT_BOOTSTRAP_DISPLAY_NAME:Support}
+
+  steam:
+    realm: ${STEAM_REALM}
+    return-url: ${STEAM_RETURN_URL}
+    frontend-success-url: ${STEAM_FRONTEND_SUCCESS_URL}
+    frontend-error-url: ${STEAM_FRONTEND_ERROR_URL}
+
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 900000

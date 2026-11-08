@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ffa-tournaments
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ffa_tournaments
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+
+  flyway:
+    enabled: true
+
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+app:
+  frontend-url: http://localhost:5173
+
+  cors:
+    allowed-origins: http://localhost:5173,http://192.168.0.25:5173
+
+  support:
+    bootstrap:
+      email: ${SUPPORT_BOOTSTRAP_EMAIL:}
+      password: ${SUPPORT_BOOTSTRAP_PASSWORD:}
+      display-name: ${SUPPORT_BOOTSTRAP_DISPLAY_NAME:Support}
+
+  steam:
+    realm: ${STEAM_REALM:http://localhost:8080}
+    return-url: ${STEAM_RETURN_URL:http://localhost:8080/api/player/steam/link/callback}
+    frontend-success-url: ${STEAM_FRONTEND_SUCCESS_URL:http://localhost:5173/profile?steam=linked}
+    frontend-error-url: ${STEAM_FRONTEND_ERROR_URL:http://localhost:5173/profile?steam=error}
+
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 900000
