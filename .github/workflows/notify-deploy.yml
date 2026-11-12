@@ -1,0 +1,22 @@
+name: Notify FFA Deploy
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger deployment
+        env:
+          GH_TOKEN: ${{ secrets.DEPLOY_DISPATCH_TOKEN }}
+        run: |
+          curl --fail-with-body --request POST \
+            --url https://api.github.com/repos/f1nil4v/ffa-deploy/dispatches \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data '{"event_type":"deploy-test"}'
